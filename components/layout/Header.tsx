@@ -7,6 +7,7 @@ import {
 import { Fragment } from "react";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
+import Link from "next/link";
 
 const userNavigation = [
   { name: "Your profile", href: "#" },
@@ -66,19 +67,13 @@ export default function Header({
           <Menu as="div" className="relative">
             <Menu.Button className="-m-1.5 flex items-center p-1.5">
               <span className="sr-only">Open user menu</span>
-              <Image
-                className="h-8 w-8 rounded-full bg-gray-50"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                alt=""
-                width={32}
-                height={32}
-              />
+              <div className="h-8 w-8 rounded-full bg-indigo-600" />
               <span className="hidden lg:flex lg:items-center">
                 <span
                   className="ml-4 text-sm font-semibold leading-6 text-gray-900"
                   aria-hidden="true"
                 >
-                  Tom Cook
+                  Florent Klein
                 </span>
                 <ChevronDownIcon
                   className="ml-2 h-5 w-5 text-gray-400"
@@ -99,7 +94,7 @@ export default function Header({
                 {userNavigation.map((item) => (
                   <Menu.Item key={item.name}>
                     {({ active }) => (
-                      <a
+                      <Link
                         href={item.href}
                         className={cn(
                           active ? "bg-gray-50" : "",
@@ -107,7 +102,7 @@ export default function Header({
                         )}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     )}
                   </Menu.Item>
                 ))}

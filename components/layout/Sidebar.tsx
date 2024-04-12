@@ -1,24 +1,13 @@
 import { Dialog, Transition } from "@headlessui/react";
-import {
-  CalendarIcon,
-  ChartPieIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  HomeIcon,
-  UsersIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { ChartPieIcon, HomeIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
+import Link from "next/link";
 
 const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Team", href: "#", icon: UsersIcon, current: false },
-  { name: "Projects", href: "#", icon: FolderIcon, current: false },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: DocumentDuplicateIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
+  { name: "Home", href: "/", icon: HomeIcon, current: true },
+  { name: "Reports", href: "/reports", icon: ChartPieIcon, current: false },
 ];
 
 export default function Sidebar({
@@ -87,7 +76,7 @@ export default function Sidebar({
                   <div className="flex h-16 shrink-0 items-center">
                     <Image
                       className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=white"
+                      src="/dametis.svg"
                       alt="Your Company"
                       width={32}
                       height={32}
@@ -99,7 +88,7 @@ export default function Sidebar({
                         <ul role="list" className="-mx-2 space-y-1">
                           {navigation.map((item) => (
                             <li key={item.name}>
-                              <a
+                              <Link
                                 href={item.href}
                                 className={cn(
                                   item.current
@@ -118,7 +107,7 @@ export default function Sidebar({
                                   aria-hidden="true"
                                 />
                                 {item.name}
-                              </a>
+                              </Link>
                             </li>
                           ))}
                         </ul>
@@ -139,7 +128,7 @@ export default function Sidebar({
           <div className="flex h-16 shrink-0 items-center">
             <Image
               className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=white"
+              src="/dametis.svg"
               alt="Your Company"
               width={32}
               height={32}
@@ -151,7 +140,7 @@ export default function Sidebar({
                 <ul role="list" className="-mx-2 space-y-1">
                   {navigation.map((item) => (
                     <li key={item.name}>
-                      <a
+                      <Link
                         href={item.href}
                         className={cn(
                           item.current
@@ -170,7 +159,7 @@ export default function Sidebar({
                           aria-hidden="true"
                         />
                         {item.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
