@@ -1,5 +1,18 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { ChartPieIcon, HomeIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowTrendingUpIcon,
+  BellIcon,
+  BriefcaseIcon,
+  ChartPieIcon,
+  Cog6ToothIcon,
+  CubeIcon,
+  DocumentTextIcon,
+  GlobeEuropeAfricaIcon,
+  HomeIcon,
+  RectangleGroupIcon,
+  ServerStackIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
@@ -7,7 +20,41 @@ import Link from "next/link";
 
 const navigation = [
   { name: "Home", href: "/", icon: HomeIcon, current: true },
+  { name: "Blocks", href: "/blocks", icon: CubeIcon, current: false },
+  {
+    name: "Synoptics",
+    href: "/synoptics",
+    icon: RectangleGroupIcon,
+    current: false,
+  },
+  {
+    name: "Playgrounds",
+    href: "/playgrounds",
+    icon: ArrowTrendingUpIcon,
+    current: false,
+  },
   { name: "Reports", href: "/reports", icon: ChartPieIcon, current: false },
+  {
+    name: "Energies",
+    href: "/energies",
+    icon: GlobeEuropeAfricaIcon,
+    current: false,
+  },
+  { name: "Billing", href: "/billing", icon: DocumentTextIcon, current: false },
+  { name: "Projects", href: "/projects", icon: BriefcaseIcon, current: false },
+  { name: "Alarms", href: "/alarms", icon: BellIcon, current: false },
+  {
+    name: "Config",
+    href: "/configuration",
+    icon: Cog6ToothIcon,
+    current: false,
+  },
+  {
+    name: "Monitoring",
+    href: "/monitoring",
+    icon: ServerStackIcon,
+    current: false,
+  },
 ];
 
 export default function Sidebar({
@@ -72,7 +119,7 @@ export default function Sidebar({
                   </div>
                 </Transition.Child>
                 {/* Sidebar component, swap this element with another sidebar if you like */}
-                <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
+                <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-blue-600 px-6 pb-4">
                   <div className="flex h-16 shrink-0 items-center">
                     <Image
                       className="h-8 w-auto"
@@ -92,8 +139,8 @@ export default function Sidebar({
                                 href={item.href}
                                 className={cn(
                                   item.current
-                                    ? "bg-indigo-700 text-white"
-                                    : "text-indigo-200 hover:text-white hover:bg-indigo-700",
+                                    ? "bg-blue-700 text-white"
+                                    : "text-blue-200 hover:text-white hover:bg-blue-700",
                                   "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
                                 )}
                               >
@@ -101,7 +148,7 @@ export default function Sidebar({
                                   className={cn(
                                     item.current
                                       ? "text-white"
-                                      : "text-indigo-200 group-hover:text-white",
+                                      : "text-blue-200 group-hover:text-white",
                                     "h-6 w-6 shrink-0",
                                   )}
                                   aria-hidden="true"
@@ -124,7 +171,7 @@ export default function Sidebar({
       {/* Static sidebar for desktop */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
         {/* Sidebar component, swap this element with another sidebar if you like */}
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
+        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-blue-600 px-6 pb-4">
           <div className="flex h-16 shrink-0 items-center">
             <Image
               className="h-8 w-auto"
@@ -144,8 +191,8 @@ export default function Sidebar({
                         href={item.href}
                         className={cn(
                           item.current
-                            ? "bg-indigo-700 text-white"
-                            : "text-indigo-200 hover:text-white hover:bg-indigo-700",
+                            ? "bg-blue-700 text-white"
+                            : "text-blue-200 hover:text-white hover:bg-blue-700",
                           "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
                         )}
                       >
@@ -153,7 +200,7 @@ export default function Sidebar({
                           className={cn(
                             item.current
                               ? "text-white"
-                              : "text-indigo-200 group-hover:text-white",
+                              : "text-blue-200 group-hover:text-white",
                             "h-6 w-6 shrink-0",
                           )}
                           aria-hidden="true"

@@ -67,7 +67,13 @@ export default function Header({
           <Menu as="div" className="relative">
             <Menu.Button className="-m-1.5 flex items-center p-1.5">
               <span className="sr-only">Open user menu</span>
-              <div className="h-8 w-8 rounded-full bg-indigo-600" />
+              <Image
+                src="/florent.jpg"
+                width={64}
+                height={64}
+                alt="profile picture"
+                className="h-8 w-8 rounded-full bg-blue-600 object-cover"
+              />
               <span className="hidden lg:flex lg:items-center">
                 <span
                   className="ml-4 text-sm font-semibold leading-6 text-gray-900"
