@@ -17,43 +17,39 @@ import { Fragment } from "react";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navigation = [
-  { name: "Home", href: "/", icon: HomeIcon, current: true },
-  { name: "Blocks", href: "/blocks", icon: CubeIcon, current: false },
+  { name: "Home", href: "/", icon: HomeIcon },
+  { name: "Blocks", href: "/blocks", icon: CubeIcon },
   {
     name: "Synoptics",
     href: "/synoptics",
     icon: RectangleGroupIcon,
-    current: false,
   },
   {
     name: "Playgrounds",
     href: "/playgrounds",
     icon: ArrowTrendingUpIcon,
-    current: false,
   },
-  { name: "Reports", href: "/reports", icon: ChartPieIcon, current: false },
+  { name: "Reports", href: "/reports", icon: ChartPieIcon },
   {
     name: "Energies",
     href: "/energies",
     icon: GlobeEuropeAfricaIcon,
-    current: false,
   },
-  { name: "Billing", href: "/billing", icon: DocumentTextIcon, current: false },
-  { name: "Projects", href: "/projects", icon: BriefcaseIcon, current: false },
-  { name: "Alarms", href: "/alarms", icon: BellIcon, current: false },
+  { name: "Billing", href: "/billing", icon: DocumentTextIcon },
+  { name: "Projects", href: "/projects", icon: BriefcaseIcon },
+  { name: "Alarms", href: "/alarms", icon: BellIcon },
   {
     name: "Config",
     href: "/configuration",
     icon: Cog6ToothIcon,
-    current: false,
   },
   {
     name: "Monitoring",
     href: "/monitoring",
     icon: ServerStackIcon,
-    current: false,
   },
 ];
 
@@ -64,6 +60,8 @@ export default function Sidebar({
   sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
 }>) {
+  const pathname = usePathname();
+
   return (
     <>
       <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -138,7 +136,11 @@ export default function Sidebar({
                               <Link
                                 href={item.href}
                                 className={cn(
-                                  item.current
+                                  (
+                                    item.href === "/"
+                                      ? pathname === "/"
+                                      : pathname.startsWith(item.href)
+                                  )
                                     ? "bg-blue-700 text-white"
                                     : "text-blue-200 hover:text-white hover:bg-blue-700",
                                   "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
@@ -146,7 +148,11 @@ export default function Sidebar({
                               >
                                 <item.icon
                                   className={cn(
-                                    item.current
+                                    (
+                                      item.href === "/"
+                                        ? pathname === "/"
+                                        : pathname.startsWith(item.href)
+                                    )
                                       ? "text-white"
                                       : "text-blue-200 group-hover:text-white",
                                     "h-6 w-6 shrink-0",
@@ -190,7 +196,11 @@ export default function Sidebar({
                       <Link
                         href={item.href}
                         className={cn(
-                          item.current
+                          (
+                            item.href === "/"
+                              ? pathname === "/"
+                              : pathname.startsWith(item.href)
+                          )
                             ? "bg-blue-700 text-white"
                             : "text-blue-200 hover:text-white hover:bg-blue-700",
                           "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
@@ -198,7 +208,11 @@ export default function Sidebar({
                       >
                         <item.icon
                           className={cn(
-                            item.current
+                            (
+                              item.href === "/"
+                                ? pathname === "/"
+                                : pathname.startsWith(item.href)
+                            )
                               ? "text-white"
                               : "text-blue-200 group-hover:text-white",
                             "h-6 w-6 shrink-0",

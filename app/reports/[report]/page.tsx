@@ -5,16 +5,16 @@ import Link from "next/link";
 import { Fragment } from "react";
 import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
 import {
-  CursorArrowRaysIcon,
-  EnvelopeOpenIcon,
-  UsersIcon,
+  ArrowTrendingUpIcon,
+  BoltIcon,
+  SunIcon,
+  TruckIcon,
 } from "@heroicons/react/24/outline";
 import {
   CalendarIcon,
   CheckIcon,
   ChevronDownIcon,
   ChevronRightIcon,
-  LinkIcon,
   PencilIcon,
   ShareIcon,
   TagIcon,
@@ -26,33 +26,34 @@ const stats = [
     id: 1,
     name: "Energy consumption",
     stat: "71,897 kWh",
-    icon: UsersIcon,
+    icon: BoltIcon,
     change: "122",
     changeType: "increase",
-    color: "bg-orange-400",
+    color: "bg-orange-500",
   },
   {
     id: 2,
     name: "Current power",
     stat: "2,356 kW",
-    icon: EnvelopeOpenIcon,
+    icon: BoltIcon,
     change: "54",
     changeType: "increase",
-    color: "bg-orange-400",
+    color: "bg-orange-500",
   },
   {
     id: 3,
     name: "Performance",
     stat: "24.57%",
-    icon: CursorArrowRaysIcon,
+    icon: ArrowTrendingUpIcon,
     change: "3.2%",
     changeType: "decrease",
+    color: "bg-green-500",
   },
   {
     id: 4,
     name: "Energy waste",
     stat: "897 Wh",
-    icon: UsersIcon,
+    icon: BoltIcon,
     change: "32",
     changeType: "decrease",
     color: "bg-black/60",
@@ -61,7 +62,7 @@ const stats = [
     id: 5,
     name: "Current temperature",
     stat: "21.4 °C",
-    icon: EnvelopeOpenIcon,
+    icon: SunIcon,
     change: "0.4",
     changeType: "increase",
     color: "bg-red-500",
@@ -70,11 +71,81 @@ const stats = [
     id: 6,
     name: "Productivity",
     stat: "324 kg/h",
-    icon: CursorArrowRaysIcon,
+    icon: TruckIcon,
     change: "1.2%",
     changeType: "increase",
+    color: "bg-blue-500",
   },
-];
+] as const;
+
+const variables = [
+  {
+    name: "Variable 1",
+    type: "Temperature",
+    value: "21.4 °C",
+    date: "04/13/2024, 03:51",
+  },
+  {
+    name: "Variable 2",
+    type: "Pressure",
+    value: "1.2 bar",
+    date: "04/13/2024, 03:52",
+  },
+  {
+    name: "Variable 3",
+    type: "Flow",
+    value: "324 kg/h",
+    date: "04/13/2024, 03:57",
+  },
+  {
+    name: "Variable 4",
+    type: "Temperature",
+    value: "21.4 °C",
+    date: "04/13/2024, 03:56",
+  },
+  {
+    name: "Variable 5",
+    type: "Pressure",
+    value: "1.2 bar",
+    date: "04/13/2024, 03:47",
+  },
+  {
+    name: "Variable 6",
+    type: "Flow",
+    value: "324 kg/h",
+    date: "04/13/2024, 03:50",
+  },
+  {
+    name: "Variable 7",
+    type: "Temperature",
+    value: "21.4 °C",
+    date: "04/13/2024, 03:53",
+  },
+  {
+    name: "Variable 8",
+    type: "Pressure",
+    value: "1.2 bar",
+    date: "04/13/2024, 03:58",
+  },
+  {
+    name: "Variable 9",
+    type: "Flow",
+    value: "324 kg/h",
+    date: "04/13/2024, 03:56",
+  },
+  {
+    name: "Variable 10",
+    type: "Temperature",
+    value: "21.4 °C",
+    date: "04/13/2024, 03:44",
+  },
+  {
+    name: "Variable 11",
+    type: "Pressure",
+    value: "1.2 bar",
+    date: "04/13/2024, 02:09",
+  },
+] as const;
 
 export default function Report({ params }: { params: { report: string } }) {
   return (
@@ -234,12 +305,7 @@ export default function Report({ params }: { params: { report: string } }) {
             className="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6"
           >
             <dt>
-              <div
-                className={cn(
-                  "absolute rounded-md bg-blue-500 p-3",
-                  item.color,
-                )}
-              >
+              <div className={cn("absolute rounded-md p-3", item.color)}>
                 <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
               <p className="ml-16 truncate text-sm font-medium text-gray-500">
@@ -269,7 +335,6 @@ export default function Report({ params }: { params: { report: string } }) {
                     aria-hidden="true"
                   />
                 )}
-
                 <span className="sr-only">
                   {" "}
                   {item.changeType === "increase"
@@ -282,7 +347,7 @@ export default function Report({ params }: { params: { report: string } }) {
               <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
                 <div className="text-sm">
                   <Link
-                    href="/playground"
+                    href="/playgrounds/1"
                     className="font-medium text-blue-600 hover:text-blue-500"
                   >
                     Open in Playground
@@ -293,6 +358,68 @@ export default function Report({ params }: { params: { report: string } }) {
           </div>
         ))}
       </dl>
+      <div className="overflow-hidden shadow sm:rounded-lg mt-5">
+        <table className="min-w-full divide-y divide-gray-300">
+          <thead className="bg-gray-50">
+            <tr>
+              <th
+                scope="col"
+                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+              >
+                Name
+              </th>
+              <th
+                scope="col"
+                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+              >
+                Type
+              </th>
+              <th
+                scope="col"
+                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+              >
+                Value
+              </th>
+              <th
+                scope="col"
+                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+              >
+                Date
+              </th>
+              <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                <span className="sr-only">Open in Playground</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200 bg-white">
+            {variables.map((variable) => (
+              <tr key={variable.name}>
+                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                  {variable.name}
+                </td>
+                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  {variable.type}
+                </td>
+                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  {variable.value}
+                </td>
+                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  {variable.date}
+                </td>
+                <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  <Link
+                    href="/playgrounds/1"
+                    className="text-blue-600 hover:text-blue-900"
+                  >
+                    Open in Playground
+                    <span className="sr-only">, {variable.name}</span>
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
